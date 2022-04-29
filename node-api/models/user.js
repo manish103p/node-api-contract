@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 mongoose.connect("mongodb://localhost:27017/EduCert",{useUnifiedTopology:true,useNewUrlParser:true},()=>{
     console.log("Connected to mongo server");
-})cd 
+})
 
 const User = mongoose.model('User', new mongoose.Schema({
     userId: {
@@ -37,8 +37,8 @@ function validateUser(user) {
     const schema = Joi.object({
         userId: Joi.string().min(5).max(255).required(),
         password: Joi.string().min(2).max(1024).required(),
-        organization: Joi.string().min(1).max(1024).required(),
-        role: Joi.string().min(2).max(10).required()
+        organization: Joi.string().min(1).max(1024).required()
+        // role: Joi.string().min(2).max(10).required()
     });
     return schema.validate(user);
 }
