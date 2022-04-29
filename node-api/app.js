@@ -196,7 +196,7 @@ app.post("/login", async (req, res) => {
         
         let { userId, password, organization } = req.body;
         const {error} = validateUser(req.body);
-        if(error) return res.status(400).send(error.details[0].message);
+        if(error) return res.status(400).send(error.details[0].message); 
 
         let user = await User.findOne({ userId : userId });
         if(user.role !== 'applicant')
