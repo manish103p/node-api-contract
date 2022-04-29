@@ -11,7 +11,7 @@ const path = require('path');
 
 exports.buildCCPOrg = () => {
 	// load the common connection configuration file
-	const ccpPath = path.resolve(__dirname, '..', 'peer', 'cert', 'ccp.json');
+	const ccpPath = path.resolve(__dirname, '..', '..', 'peer', 'cert', 'ccp.json');
 	const fileExists = fs.existsSync(ccpPath);
 	if (!fileExists) {
 		throw new Error(`no such file or directory: ${ccpPath}`);
