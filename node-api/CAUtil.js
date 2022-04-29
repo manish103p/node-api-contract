@@ -18,9 +18,9 @@ exports.buildCAClient = (FabricCAServices, ccp, caHostName) => {
 	// Create a new CA client for interacting with the CA.
 	const caInfo = ccp.certificateAuthorities[caHostName]; //lookup CA details from config
 	// const caTLSCACerts = caInfo.tlsCACerts.pem;
-	const caClient = new FabricCAServices(caInfo.url, caInfo.caName);
+	const caClient = new FabricCAServices(caInfo.url,{ trustedRoots: caTLSCACerts, verify: true }, caInfo.caName);
 
-	console.log(`Built a CA Client named ${caInfo.caName}`);
+	console.log('Built a CA Client named ${caInfo.caName}');
 	return caClient;
 };
 

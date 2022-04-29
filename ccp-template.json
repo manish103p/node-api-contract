@@ -30,7 +30,10 @@
     "certificateAuthorities": {
         "20.70.186.121:7054": {
             "url": "http://20.70.186.121:7054",
-            "caName": "rootca",
+            "caName": "educertca",
+            "tlsCACerts": {
+                "pem": ["-----BEGIN CERTIFICATE-----MIICHTCCAcSgAwIBAgIUJBHnFmSBbkoS+2tn/A0kwyLaqNkwCgYIKoZIzj0EAwIwYzEOMAwGA1UEBhMFSW5kaWExCzAJBgNVBAgTAk1IMQ8wDQYDVQQHEwZOZXdhcmsxEDAOBgNVBAoTB0VkdWNlcnQxDDAKBgNVBAsTA0IyQjETMBEGA1UEAxMKRWR1Y2VydC1DQTAeFw0yMjA0MTgxOTA3MDBaFw0zNzA0MTQxOTA3MDBaMGMxDjAMBgNVBAYTBUluZGlhMQswCQYDVQQIEwJNSDEPMA0GA1UEBxMGTmV3YXJrMRAwDgYDVQQKEwdFZHVjZXJ0MQwwCgYDVQQLEwNCMkIxEzARBgNVBAMTCkVkdWNlcnQtQ0EwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARfEOYq/KyzRcjVp8o9K7jSwJ1BT59VzJCpf8uE58I2IyTX5x4EAWYF5Y1o3/rqpNE2TVdPgJI3WwYpYuJ4E2lXo1YwVDAOBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQUO4uZ3GJepI8hAx3+9gdwvlblRV4wDwYDVR0RBAgwBocEFEa6eTAKBggqhkjOPQQDAgNHADBEAiB5wYmV5Zp4dk2BDcqQlewJQbu6Xilsm9r2R9GlD9R7ngIgZxwFmoVeO6zyaBqm9hcviOMab1PBFkCPQSRwcLAmPwI=-----END CERTIFICATE-----"]
+            },
             "httpOptions": {
                 "verify": false
             }
