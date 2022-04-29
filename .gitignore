@@ -1,2 +1,2 @@
-/node-api/node_modules/*
-/mongo/database/*
+node-api/node_modules/*
+mongo/database/*
