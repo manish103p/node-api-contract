@@ -1,0 +1,39 @@
+{
+    "name": "somaiya",
+    "version": "1.0.0",
+    "client": {
+        "organization": "somaiya",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "somaiya": {
+            "mspid": "SomaiyaMSP",
+            "peers": [
+                "0.0.0.0:7051"
+            ],
+            "certificateAuthorities": [
+                "20.70.186.121:7054"
+            ]
+        }
+    },
+    "peers": {
+        "0.0.0.0:7051": {
+            "url": "grpc://localhost:7051"
+        }
+    },
+    "certificateAuthorities": {
+        "20.70.186.121:7054": {
+            "url": "http://20.70.186.121:7054",
+            "caName": "rootca",
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}
