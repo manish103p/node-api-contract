@@ -9,7 +9,7 @@ const { Utils: utils } = require('fabric-common');
 let config=utils.getConfig()
 config.file(path.resolve(__dirname,'config.json'))
 let walletPath;
-const {buildCCPOrg} = require("./buildCCP");
+const {buildCCPOrg} = require("./AppUtils");
 
 exports.registerAdmin = async ({ OrgMSP }) => {
 
