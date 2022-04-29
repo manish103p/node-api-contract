@@ -76,7 +76,7 @@ app.post("/registerAdmin", async (req, res) => {
     try {
         let organization = req.body.organization;
         let user = new User({
-            userId: "admin", password: "adminpw", organization, role:"admin"
+            userId: "admin", password: "pw", organization, role:"admin"
         });
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password,salt);
