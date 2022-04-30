@@ -50,7 +50,7 @@ const { BlobServiceClient, BlobSASPermissions } = require('@azure/storage-blob')
 
 const applicantChaincode = "applicant-asset-transfer";
 const documentChaincode = "document-asset-transfer";
-const channelName = "mychannel"
+const channelName = "educertchannel"
 
 const mongodbPort = "3001";
 var cors = require('cors');
