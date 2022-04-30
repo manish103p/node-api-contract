@@ -2,7 +2,7 @@ const { Wallets } = require("fabric-network");
 const FabricCAServices = require('fabric-ca-client');
 
 const { buildCAClient, registerAndEnrollUser, enrollAdmin ,userExist} = require("./CAUtil")
-const {  buildWallet } = require("./AppUtils");
+const {  buildWallet, buildCCPOrg } = require("./AppUtils");
 const { getCCP } = require("./buildCCP");
 const path=require('path');
 const { Utils: utils } = require('fabric-common');
@@ -10,11 +10,12 @@ let config=utils.getConfig()
 config.file(path.resolve(__dirname,'config.json'))
 let walletPath;
 
+
 exports.registerAdmin = async ({ OrgMSP }) => {
 
-    let org = Number(OrgMSP.match(/\d/g).join(""));
+    // let org = Number(OrgMSP.match(/\d/g).join(""));
     walletPath=path.join(__dirname,"wallet")
-    let ccp = getCCP(org)
+    let ccp = buildCCPOrg();
     const caClient = buildCAClient(FabricCAServices, ccp, `ca.org${org}.example.com`);
     
     /*const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
