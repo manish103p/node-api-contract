@@ -133,7 +133,9 @@ exports.getAllApplicantsOfOrganization = async (request) => {
 
     const network = await gateway.getNetwork(request.channelName);
     const contract = network.getContract(request.chaincodeName);
+    console.log("getallapp");
     let result = await contract.submitTransaction('getAllApplicantsOfOrganization'); 
+    console.log("getallendendend");
     return {ok:true, data:result};
     } catch (error) {
         return { ok: false, error: "Error in contract operation: " + error.message };
