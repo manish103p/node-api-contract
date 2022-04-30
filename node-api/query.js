@@ -1,8 +1,7 @@
-const { getCCP } = require("./buildCCP");
 const { Wallets, Gateway } = require('fabric-network');
 const path = require("path");
 const walletPath = path.join(__dirname, "wallet");
-const { buildWallet } = require('./AppUtils')
+const { buildWallet, buildCCPOrg } = require('./AppUtils')
 
 const { BlobServiceClient, BlobSASPermissions } = require('@azure/storage-blob');
 
@@ -16,8 +15,8 @@ const { BlobServiceClient, BlobSASPermissions } = require('@azure/storage-blob')
 exports.getMyDetails = async (request) => {
     try {
         let organization = request.organization;
-    let num = Number(organization.match(/\d/g).join(""));
-    const ccp = getCCP(num);
+     
+    const ccp = buildCCPOrg();
     const wallet = await buildWallet(Wallets, walletPath);
 	
     const gateway = new Gateway();
@@ -44,8 +43,8 @@ exports.getMyDetails = async (request) => {
 exports.getPermissionedApplicant = async (request) => {
     try {
         let organization = request.organization;
-    let num = Number(organization.match(/\d/g).join(""));
-    const ccp = getCCP(num);
+     
+    const ccp = buildCCPOrg();
 
     const wallet = await buildWallet(Wallets, walletPath);
 
@@ -70,8 +69,8 @@ exports.getPermissionedApplicant = async (request) => {
 
 exports.getPermissionedApplicantHistory = async (request) => {
     let organization = request.organization;
-    let num = Number(organization.match(/\d/g).join(""));
-    const ccp = getCCP(num);
+     
+    const ccp = buildCCPOrg();
 
     const wallet = await buildWallet(Wallets, walletPath);
 
@@ -95,8 +94,8 @@ exports.getPermissionedApplicantHistory = async (request) => {
 exports.getCurrentlyEnrolledApplicants = async (request) => {
     try {
         let organization = request.organization;
-    let num = Number(organization.match(/\d/g).join(""));
-    const ccp = getCCP(num);
+     
+    const ccp = buildCCPOrg();
 
     const wallet = await buildWallet(Wallets, walletPath);
 
@@ -120,8 +119,8 @@ exports.getCurrentlyEnrolledApplicants = async (request) => {
 exports.getAllApplicantsOfOrganization = async (request) => {
     try {
         let organization = request.organization;
-    let num = Number(organization.match(/\d/g).join(""));
-    const ccp = getCCP(num);
+     
+    const ccp = buildCCPOrg();
 
     const wallet = await buildWallet(Wallets, walletPath);
 
@@ -145,8 +144,8 @@ exports.getAllApplicantsOfOrganization = async (request) => {
 exports.hasMyPermission = async (request) => {
     try {
         let organization = request.organization;
-    let num = Number(organization.match(/\d/g).join(""));
-    const ccp = getCCP(num);
+     
+    const ccp = buildCCPOrg();
 
     const wallet = await buildWallet(Wallets, walletPath);
 
@@ -178,8 +177,8 @@ exports.hasMyPermission = async (request) => {
 exports.getDocumentsByApplicantId = async (request) => {
     try {
         let organization = request.organization;
-    let num = Number(organization.match(/\d/g).join(""));
-    const ccp = getCCP(num);
+     
+    const ccp = buildCCPOrg();
 
     const wallet = await buildWallet(Wallets, walletPath);
 
@@ -251,8 +250,8 @@ const putUrl = async (docArray) => {
 exports.getMyDocuments = async (request) => {
     try {
         let organization = request.organization;
-    let num = Number(organization.match(/\d/g).join(""));
-    const ccp = getCCP(num);
+     
+    const ccp = buildCCPOrg();
 
     const wallet = await buildWallet(Wallets, walletPath);
 
@@ -277,8 +276,8 @@ exports.getMyDocuments = async (request) => {
 exports.getDocumentsSignedByOrganization = async (request) => {
     try {
         let organization = request.organization;
-        let num = Number(organization.match(/\d/g).join(""));
-        const ccp = getCCP(num);
+         
+        const ccp = buildCCPOrg();
         const wallet = await buildWallet(Wallets, walletPath);
         
         const gateway = new Gateway();

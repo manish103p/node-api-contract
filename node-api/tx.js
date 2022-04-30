@@ -1,8 +1,7 @@
-const { getCCP } = require("./buildCCP");
 const { Wallets, Gateway } = require('fabric-network');
 const path = require("path");
 const walletPath = path.join(__dirname, "wallet");
-const { buildWallet } = require('./AppUtils')
+const { buildWallet, buildCCPOrg } = require('./AppUtils')
 
 
 
@@ -14,8 +13,8 @@ const { buildWallet } = require('./AppUtils')
 exports.createApplicant = async (request) => {
     try {
         let organization = request.user.organization;
-        let num = Number(organization.match(/\d/g).join(""));
-        const ccp = getCCP(num);
+          
+        const ccp = buildCCPOrg();
 
         const wallet = await buildWallet(Wallets, walletPath);
 
@@ -47,8 +46,8 @@ exports.createApplicant = async (request) => {
 exports.updateMyPersonalDetails = async (request) => {
     try {
         let organization = request.organization;
-        let num = Number(organization.match(/\d/g).join(""));
-        const ccp = getCCP(num);
+          
+        const ccp = buildCCPOrg();
 
         const wallet = await buildWallet(Wallets, walletPath);
 
@@ -78,8 +77,8 @@ exports.updateMyPersonalDetails = async (request) => {
 exports.updateMyPassword = async (request) => {
     try {
         let organization = request.organization;
-        let num = Number(organization.match(/\d/g).join(""));
-        const ccp = getCCP(num);
+          
+        const ccp = buildCCPOrg();
 
         const wallet = await buildWallet(Wallets, walletPath);
 
@@ -113,8 +112,8 @@ exports.updateMyPassword = async (request) => {
 exports.changeCurrentOrganization = async (request) => {
     try {
         let organization = request.organization;
-        let num = Number(organization.match(/\d/g).join(""));
-        const ccp = getCCP(num);
+          
+        const ccp = buildCCPOrg();
 
         const wallet = await buildWallet(Wallets, walletPath);
 
@@ -144,8 +143,8 @@ exports.changeCurrentOrganization = async (request) => {
 exports.grantAccessToOrganization = async (request) => {
     try {
         let organization = request.organization;
-        let num = Number(organization.match(/\d/g).join(""));
-        const ccp = getCCP(num);
+          
+        const ccp = buildCCPOrg();
 
         const wallet = await buildWallet(Wallets, walletPath);
 
@@ -177,8 +176,8 @@ exports.grantAccessToOrganization = async (request) => {
 exports.revokeAccessFromOrganization = async (request) => {
     try {
         let organization = request.organization;
-        let num = Number(organization.match(/\d/g).join(""));
-        const ccp = getCCP(num);
+          
+        const ccp = buildCCPOrg();
 
         const wallet = await buildWallet(Wallets, walletPath);
 
@@ -208,8 +207,8 @@ exports.revokeAccessFromOrganization = async (request) => {
 
 // exports.getAllApplicantsOfOrganization = async (request) => {
 //     let organization = request.organization;
-//     let num = Number(organization.match(/\d/g).join(""));
-//     const ccp = getCCP(num);
+//       
+//     const ccp = buildCCPOrg();
 
 //     const wallet = await buildWallet(Wallets, walletPath);
 
@@ -239,9 +238,9 @@ exports.revokeAccessFromOrganization = async (request) => {
 exports.createVerifiedDocument = async (request) => {
     try {
         let organization = request.organization;
-        let num = Number(organization.match(/\d/g).join(""));
+          
 
-        const ccp = getCCP(num);
+        const ccp = buildCCPOrg();
 
         const wallet = await buildWallet(Wallets, walletPath);
 
@@ -283,8 +282,8 @@ exports.createVerifiedDocument = async (request) => {
 exports.createSelfUploadedDocument = async (request) => {
     try {
         let organization = request.organization;
-        let num = Number(organization.match(/\d/g).join(""));
-        const ccp = getCCP(num);
+          
+        const ccp = buildCCPOrg();
 
         const wallet = await buildWallet(Wallets, walletPath);
 
@@ -319,7 +318,7 @@ exports.verifyDocument = async (request) => {
     try {
         let org = request.org;
         let num = Number(org.match(/\d/g).join(""));
-        const ccp = getCCP(num);
+        const ccp = buildCCPOrg();
 
         const wallet = await buildWallet(Wallets, walletPath);
 

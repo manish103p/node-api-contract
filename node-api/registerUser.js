@@ -42,8 +42,9 @@ exports.registerAdmin = async ({ OrgMSP }) => {
 
 exports.registerUser = async ({ OrgMSP, userId, role }) => {
 
-    let org = Number(OrgMSP.match(/\d/g).join(""));
-    walletPath=path.join(__dirname,"wallet")
+    let org = OrgMSP.toLowerCase().slice(0, OrgMSP.length - 3);
+
+    walletPath=path.join(__dirname,"wallet");
     let ccp = buildCCPOrg();
     const caClient = buildCAClient(FabricCAServices, ccp, '20.70.186.121:7054');
     
@@ -63,7 +64,7 @@ exports.registerUser = async ({ OrgMSP, userId, role }) => {
 
     // in a real application this would be done only when a new user was required to be added
     // and would be part of an administrative flow
-    await registerAndEnrollUser(caClient, wallet, OrgMSP, userId, `org${org}.department1`, role);
+    await registerAndEnrollUser(caClient, wallet, OrgMSP, userId, org, role);
 
     return {
         wallet
@@ -72,9 +73,9 @@ exports.registerUser = async ({ OrgMSP, userId, role }) => {
 
 
 exports.userExist=async({ OrgMSP, userId })=>{
-    let org = Number(OrgMSP.match(/\d/g).join(""));
-    let ccp = getCCP(org)
-    const caClient = buildCAClient(FabricCAServices, ccp, '20.70.186.121:7054');
+    // let org = Number(OrgMSP.match(/\d/g).join(""));
+    // let ccp = getCCP(org)
+    // const caClient = buildCAClient(FabricCAServices, ccp, '20.70.186.121:7054');
 
     // setup the wallet to hold the credentials of the application user
     const wallet = await buildWallet(Wallets, walletPath);
