@@ -108,7 +108,11 @@ exports.getCurrentlyEnrolledApplicants = async (request) => {
 
     const network = await gateway.getNetwork(request.channelName);
     const contract = network.getContract(request.chaincodeName);
+    console.log("getcurrentlyapp");
+
     let result = await contract.submitTransaction('getCurrentlyEnrolledApplicants'); 
+    console.log("getcurappendend");
+
     return {ok:true, data:result};
     } catch (error) {
         return { ok: false, error: "Error in contract operation: " + error.message };
