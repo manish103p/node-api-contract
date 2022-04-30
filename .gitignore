@@ -1,2 +1,4 @@
 node-api/node_modules/*
 mongo/database/*
+document-asset-transfer/node_modules/*
+applicant-asset-transfer/node_modules/*
