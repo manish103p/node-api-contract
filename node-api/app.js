@@ -76,7 +76,7 @@ app.post("/registerAdmin", async (req, res) => {
     try {
         let organization = req.body.organization;
         let user = new User({
-            userId: "admin", password: "pw", organization, role:"admin"
+            userId: "admin", password: "adminpw", organization, role:"admin"
         });
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password,salt);
@@ -94,7 +94,7 @@ app.post("/registerViceAdmin", auth, async (req, res) => {
         if(req.user.role === 'admin'){
             let {userId, password} = req.body;
             req.body.organization = req.user.organization;
-            // console.log(req.body.organization)
+            console.log(req.body.organization)
             // req.body.role = 'viceAdmin';
             const {error} = validateUser(req.body);
             if(error) return res.status(400).send(error.details[0].message);
@@ -132,7 +132,7 @@ app.post("/registerApplicant", auth, async (req, res) => {
             let organization = req.user.organization;
             let role = "applicant";
             //generate certif
-            // console.log(req.body)
+            console.log(req.body)
             await registerUser({ OrgMSP: organization, userId: applicantId, role});
             
             //register applicant in mongo
@@ -196,7 +196,7 @@ app.post("/login", async (req, res) => {
         
         let { userId, password, organization } = req.body;
         const {error} = validateUser(req.body);
-        if(error) return res.status(400).send(error.details[0].message); 
+        if(error) return res.status(400).send(error.details[0].message);
 
         let user = await User.findOne({ userId : userId });
         if(user.role !== 'applicant')

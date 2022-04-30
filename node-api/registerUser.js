@@ -9,14 +9,13 @@ const { Utils: utils } = require('fabric-common');
 let config=utils.getConfig()
 config.file(path.resolve(__dirname,'config.json'))
 let walletPath;
-const {buildCCPOrg} = require("./AppUtils");
 
 exports.registerAdmin = async ({ OrgMSP }) => {
 
-    // let org = Number(OrgMSP.match(/\d/g).join(""));
-    walletPath=path.join(__dirname,"wallet");
-    let ccp = buildCCPOrg();
-    const caClient = buildCAClient(FabricCAServices, ccp, '20.70.186.121:7054');
+    let org = Number(OrgMSP.match(/\d/g).join(""));
+    walletPath=path.join(__dirname,"wallet")
+    let ccp = getCCP(org)
+    const caClient = buildCAClient(FabricCAServices, ccp, `ca.org${org}.example.com`);
     
     /*const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
     const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
@@ -29,7 +28,7 @@ exports.registerAdmin = async ({ OrgMSP }) => {
     // setup the wallet to hold the credentials of the application user
     const wallet = await buildWallet(Wallets, walletPath);
 
-    console.log("wallet ", wallet);
+    console.log("wallet ", wallet)
     // in a real application this would be done on an administrative flow, and only once
     await enrollAdmin(caClient, wallet, OrgMSP);
 
@@ -42,10 +41,10 @@ exports.registerAdmin = async ({ OrgMSP }) => {
 
 exports.registerUser = async ({ OrgMSP, userId, role }) => {
 
-    // let org = Number(OrgMSP.match(/\d/g).join(""));
-    walletPath=path.join(__dirname,"wallet");
-    let ccp = buildCCPOrg();
-    const caClient = buildCAClient(FabricCAServices, ccp, '20.70.186.121:7054');
+    let org = Number(OrgMSP.match(/\d/g).join(""));
+    walletPath=path.join(__dirname,"wallet")
+    let ccp = getCCP(org)
+    const caClient = buildCAClient(FabricCAServices, ccp, `ca.org${org}.example.com`);
     
     /*const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
     const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
@@ -72,8 +71,8 @@ exports.registerUser = async ({ OrgMSP, userId, role }) => {
 
 
 exports.userExist=async({ OrgMSP, userId })=>{
-    // let org = Number(OrgMSP.match(/\d/g).join(""));
-    let ccp = buildCCPOrg();
+    let org = Number(OrgMSP.match(/\d/g).join(""));
+    let ccp = getCCP(org)
     const caClient = buildCAClient(FabricCAServices, ccp, `ca-org${org}`);
 
     // setup the wallet to hold the credentials of the application user
