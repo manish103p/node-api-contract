@@ -16,7 +16,7 @@ exports.registerAdmin = async ({ OrgMSP }) => {
     // let org = Number(OrgMSP.match(/\d/g).join(""));
     walletPath=path.join(__dirname,"wallet")
     let ccp = buildCCPOrg();
-    const caClient = buildCAClient(FabricCAServices, ccp, `ca.org${org}.example.com`);
+    const caClient = buildCAClient(FabricCAServices, ccp, '20.70.186.121:7054');
     
     /*const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
     const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
@@ -44,8 +44,8 @@ exports.registerUser = async ({ OrgMSP, userId, role }) => {
 
     let org = Number(OrgMSP.match(/\d/g).join(""));
     walletPath=path.join(__dirname,"wallet")
-    let ccp = getCCP(org)
-    const caClient = buildCAClient(FabricCAServices, ccp, `ca.org${org}.example.com`);
+    let ccp = buildCCPOrg();
+    const caClient = buildCAClient(FabricCAServices, ccp, '20.70.186.121:7054');
     
     /*const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
     const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
@@ -74,7 +74,7 @@ exports.registerUser = async ({ OrgMSP, userId, role }) => {
 exports.userExist=async({ OrgMSP, userId })=>{
     let org = Number(OrgMSP.match(/\d/g).join(""));
     let ccp = getCCP(org)
-    const caClient = buildCAClient(FabricCAServices, ccp, `ca-org${org}`);
+    const caClient = buildCAClient(FabricCAServices, ccp, '20.70.186.121:7054');
 
     // setup the wallet to hold the credentials of the application user
     const wallet = await buildWallet(Wallets, walletPath);
