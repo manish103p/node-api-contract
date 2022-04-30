@@ -48,8 +48,8 @@ var upload = multer({ storage: storage }).array("file");
 const { BlobServiceClient, BlobSASPermissions } = require('@azure/storage-blob');
 
 
-const applicantChaincode = "applicant-asset-transfer";
-const documentChaincode = "document-asset-transfer";
+const applicantChaincode = "applicantChaincode";
+const documentChaincode = "documentChaincode";
 const channelName = "educertchannel"
 
 const mongodbPort = "3001";
